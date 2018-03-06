@@ -2,7 +2,7 @@
 
 <h1 align="center">
   <br>
-  <img src="bot.png" height="300" width="300"/>
+  <img src="bot.jpg" height="300" width="300"/>
   <br>
   tipisign bot 
   <br>
