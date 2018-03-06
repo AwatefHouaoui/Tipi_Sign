@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -28,7 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.model.PushMessage;
@@ -49,7 +47,6 @@ import com.linecorp.bot.model.message.template.ConfirmTemplate;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
-
 import lombok.extern.slf4j.Slf4j;
 import retrofit2.Response;
 
@@ -68,19 +65,22 @@ public class BotController {
 		handleTextContent(event.getReplyToken(), event, message);
 	}
 
-
-
+	@ResponseBody
 	@RequestMapping(value = "/webhook", method = RequestMethod.POST)
-	private @ResponseBody Map<String, Object> webhook(@RequestBody Map<String, Object> obj)
-			throws JSONException, IOException {
+	private void webhook(@RequestBody String obj) throws JSONException, IOException {
 		String channelToken = "YeGR+Tx/wXpHTEto2B3faYXy16D+9ACtLW7yiUqqDAtFeX0nW5AEgHNcUYfxDL4+5QQ1ytWFUv1Ol5+1Pb2wOWk5+44idmCjlP6vancpqEk6q0tNuG4GGOPg5/S/mE4HZiqkBcEJ4F5plHAxfQ0CTwdB04t89/1O/w1cDnyilFU=";
-
-		Map<String, Object> json = new HashMap<String, Object>();
-		
-		
-		return json;
-
+		 JSONObject bodyJson = new JSONObject(obj);
+		 System.out.println(bodyJson);
+		return; 
 	}
+	
+	/**Map<String, Object> webhook(@RequestBody Map<String, Object> obj)
+			throws JSONException, IOException {
+			//Map<String, Object> json = new HashMap<String, Object>();
+
+		return obj;
+		}
+		**/
 
 	@EventMapping
 	public void handlePostbackEvent(PostbackEvent event) {
