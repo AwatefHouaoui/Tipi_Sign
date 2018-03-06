@@ -1,8 +1,8 @@
-package org.Test.Metier;
+package org.test.metier;
 
 import java.util.List;
-import org.Test.Dao.UserInformationRepository;
-import org.Test.Entities.UserInformation;
+import org.test.dao.UserInformationRepository;
+import org.test.entities.UserInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package org.Test.Entities;
+package org.test.entities;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -1,7 +1,7 @@
-package org.Test.Metier;
+package org.test.metier;
 
 import java.util.List;
-import org.Test.Entities.UserInformation;
+import org.test.entities.UserInformation;
 
 public interface UserInformationMetier {
 	public UserInformation saveUserInformation(UserInformation u);

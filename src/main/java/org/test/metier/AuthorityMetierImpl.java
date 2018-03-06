@@ -1,8 +1,8 @@
-package org.Test.Metier;
+package org.test.metier;
 
 import java.util.List;
-import org.Test.Dao.AuthorityRepository;
-import org.Test.Entities.Authority;
+import org.test.dao.AuthorityRepository;
+import org.test.entities.Authority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

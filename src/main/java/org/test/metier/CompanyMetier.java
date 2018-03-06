@@ -1,7 +1,7 @@
-package org.Test.Metier;
+package org.test.metier;
 
 import java.util.List;
-import org.Test.Entities.Company;
+import org.test.entities.Company;
 
 public interface CompanyMetier {
 	public Company saveCompany(Company c);

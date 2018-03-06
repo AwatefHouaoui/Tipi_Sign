@@ -1,6 +1,6 @@
-package org.Test.Dao;
+package org.test.dao;
 
-import org.Test.Entities.CommentForRequest;
+import org.test.entities.CommentForRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CommentForRequestRepository extends JpaRepository<CommentForRequest, Long> {

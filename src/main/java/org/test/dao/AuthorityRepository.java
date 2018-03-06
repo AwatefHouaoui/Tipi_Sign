@@ -1,6 +1,6 @@
-package org.Test.Dao;
+package org.test.dao;
 
-import org.Test.Entities.Authority;
+import org.test.entities.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {

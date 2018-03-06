@@ -1,8 +1,8 @@
-package org.Test.Service;
+package org.test.service;
 
 import java.util.List;
-import org.Test.Entities.Request;
-import org.Test.Metier.RequestMetier;
+import org.test.entities.Request;
+import org.test.metier.RequestMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

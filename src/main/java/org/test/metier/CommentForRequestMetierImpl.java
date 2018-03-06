@@ -1,8 +1,8 @@
-package org.Test.Metier;
+package org.test.metier;
 
 import java.util.List;
-import org.Test.Dao.CommentForRequestRepository;
-import org.Test.Entities.CommentForRequest;
+import org.test.dao.CommentForRequestRepository;
+import org.test.entities.CommentForRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
-package org.Test.Service;
+package org.test.service;
 
 import java.util.List;
-import org.Test.Entities.Authority;
-import org.Test.Metier.AuthorityMetier;
+import org.test.entities.Authority;
+import org.test.metier.AuthorityMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

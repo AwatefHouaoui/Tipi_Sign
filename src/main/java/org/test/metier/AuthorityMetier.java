@@ -1,7 +1,7 @@
-package org.Test.Metier;
+package org.test.metier;
 
 import java.util.List;
-import org.Test.Entities.Authority;
+import org.test.entities.Authority;
 
 public interface AuthorityMetier {
 	public Authority saveAuthority(Authority a);

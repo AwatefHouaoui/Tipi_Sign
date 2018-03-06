@@ -34,6 +34,7 @@ import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.action.Action;
 import com.linecorp.bot.model.action.DatetimePickerAction;
 import com.linecorp.bot.model.action.MessageAction;
+import com.linecorp.bot.model.action.PostbackAction;
 import com.linecorp.bot.model.action.URIAction;
 import com.linecorp.bot.model.event.Event;
 import com.linecorp.bot.model.event.MessageEvent;
@@ -58,6 +59,7 @@ public class BotController {
 
 	@Autowired
 	private LineMessagingClient lineMessagingClient;
+	String channelToken = "YeGR+Tx/wXpHTEto2B3faYXy16D+9ACtLW7yiUqqDAtFeX0nW5AEgHNcUYfxDL4+5QQ1ytWFUv1Ol5+1Pb2wOWk5+44idmCjlP6vancpqEk6q0tNuG4GGOPg5/S/mE4HZiqkBcEJ4F5plHAxfQ0CTwdB04t89/1O/w1cDnyilFU=";
 
 	@EventMapping
 	public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws Exception {
@@ -71,13 +73,104 @@ public class BotController {
 
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/webhook")
-	private void webhook(@RequestBody String obj) {
-		System.out.println("helooooooooooo");
-		String channelToken = "YeGR+Tx/wXpHTEto2B3faYXy16D+9ACtLW7yiUqqDAtFeX0nW5AEgHNcUYfxDL4+5QQ1ytWFUv1Ol5+1Pb2wOWk5+44idmCjlP6vancpqEk6q0tNuG4GGOPg5/S/mE4HZiqkBcEJ4F5plHAxfQ0CTwdB04t89/1O/w1cDnyilFU=";
-		JSONObject bodyJson = new JSONObject(obj);
-		logger.info("\nJSON BODY FROM DIALOGFLOW \n {}  ", bodyJson, "\n \n");
+	private static String createUri(String path) {
+		return ServletUriComponentsBuilder.fromCurrentContextPath().path(path).build().toUriString();
+	}
+
+	@RequestMapping(value = "/webhook", method = RequestMethod.POST)
+	private @ResponseBody Map<String, Object> webhook(@RequestBody Map<String, Object> obj)
+			throws JSONException, IOException {
+
+		Map<String, Object> json = new HashMap<>();
+
+		JSONObject jsonResult = new JSONObject(obj);
+		JSONObject rsl = jsonResult.getJSONObject("originalRequest");
+		JSONObject data = rsl.getJSONObject("data");
+		JSONObject source = data.getJSONObject("source");
+		JSONObject message = data.getJSONObject("message");
+		String userId = source.getString("userId");
+		String customerMessage = message.getString("text");
+		String timestamp = jsonResult.getString("timestamp");
+		JSONObject result = jsonResult.getJSONObject("result");
+		JSONObject metadata = result.getJSONObject("metadata");
+		String intentName = metadata.getString("intentName");
+		JSONObject parameters = result.getJSONObject("parameters");
+		JSONObject fulfillment = result.getJSONObject("fulfillment");
+		String speech = fulfillment.getString("speech");
+
+		LinkedHashMap<String, String> hm = new LinkedHashMap<>();
+		System.out.println("test");
+		// switch (intentName.toLowerCase()) {
+		// case "carousel":
+		//
+		// String imageUrl = createUri("/static/buttons/1040.jpg");
+		// CarouselTemplate carouselTemplate = new CarouselTemplate(Arrays.asList(
+		// new CarouselColumn(imageUrl, "hoge", "fuga",
+		// Arrays.asList(new URIAction("Go to line.me", "https://line.me"),
+		// new URIAction("Go to line.me", "https://line.me"),
+		// new PostbackAction("Say hello1", "hello こんにちは"))),
+		// new CarouselColumn(imageUrl, "hoge", "fuga",
+		// Arrays.asList(new PostbackAction("言 hello2", "hello こんにちは", "hello こんにちは"),
+		// new PostbackAction("言 hello2", "hello こんにちは", "hello こんにちは"),
+		// new MessageAction("Say message", "Rice=米"))),
+		// new CarouselColumn(imageUrl, "Datetime Picker", "Please select a date, time
+		// or datetime",
+		// Arrays.asList(
+		// new DatetimePickerAction("Datetime", "action=sel", "datetime",
+		// "2017-06-18T06:15",
+		// "2100-12-31T23:59", "1900-01-01T00:00"),
+		// new DatetimePickerAction("Date", "action=sel&only=date", "date",
+		// "2017-06-18",
+		// "2100-12-31", "1900-01-01"),
+		// new DatetimePickerAction("Time", "action=sel&only=time", "time", "06:15",
+		// "23:59",
+		// "00:00")))));
+		// TemplateMessage templateMessage = new TemplateMessage("Carousel alt text",
+		// carouselTemplate);
+		// PushMessage pushMessage = new PushMessage(userId, templateMessage);
+		// LineMessagingServiceBuilder.create(channelToken).build().pushMessage(pushMessage).execute();
+		//
+		// break;
+		//
+		// case "menu":
+		//
+		// hm.put("Osaka", "osaka");
+		// hm.put("Tokyo", "tokyo");
+		// hm.put("London", "london");
+		//
+		// typeBRecursiveChoices(
+		// "https://lh3.googleusercontent.com/oKsgcsHtHu_nIkpNd-mNCAyzUD8xo68laRPOfvFuO0hqv6nDXVNNjEMmoiv9tIDgTj8=w170",
+		// " boldTitle", " normalTitle", hm, channelToken, userId);
+		// logger.info("paris :" + customerMessage);
+		//
+		// break;
+		// case "type b":
+		//
+		// typeBRecursiveChoices(
+		// "https://lh3.googleusercontent.com/oKsgcsHtHu_nIkpNd-mNCAyzUD8xo68laRPOfvFuO0hqv6nDXVNNjEMmoiv9tIDgTj8=w170",
+		// " boldTitle", " normalTitle", hm, channelToken, userId);
+		// logger.info("see more :", customerMessage);
+		// break;
+		// case "b2":
+		// hm = new LinkedHashMap<>();
+		// hm.put("Osaka", "osaka");
+		// hm.put("Tokyo", "tokyo");
+		// hm.put("London", "london");
+		// typeBChoices(
+		// "https://lh3.googleusercontent.com/oKsgcsHtHu_nIkpNd-mNCAyzUD8xo68laRPOfvFuO0hqv6nDXVNNjEMmoiv9tIDgTj8=w170",
+		// " boldTitle", " normalTitle", hm, " nextOrSeeMore", " nextOrSeeMoreAnswer",
+		// channelToken, userId);
+		// logger.info("London :", customerMessage);
+		// break;
+		//
+		// default:
+		// sendAlertViaSlack(userId, timestamp, customerMessage);
+		// logger.info("slack :" + customerMessage);
+		// break;
+		// }
+
+		return json;
+
 	}
 
 	/**

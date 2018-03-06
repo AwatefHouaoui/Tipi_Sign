@@ -14,10 +14,9 @@ import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 @SpringBootApplication
 @LineMessageHandler
 @EnableConfigurationProperties
-@EntityScan(basePackages = { "com.example.entity" })
-@ComponentScan(basePackages = { "com.example.controller" })
-@EnableJpaRepositories(basePackages = { "com.example.repository" })
-@ComponentScan
+//@EntityScan(basePackages = { "org.test.entities" })
+//@ComponentScan(basePackages = { "org.test.metier" })
+//@EnableJpaRepositories(basePackages = { "org.test.dao" })
 public class HrBotApplication {
 	static Path downloadedContentDir;
 
