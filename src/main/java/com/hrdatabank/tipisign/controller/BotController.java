@@ -65,24 +65,30 @@ public class BotController {
 		handleTextContent(event.getReplyToken(), event, message);
 	}
 
+	@RequestMapping(value = "/service", method = RequestMethod.GET)
+	private String serviceEssai() {
+		return "just here now";
+
+	}
+
 	@ResponseBody
 	@RequestMapping(value = "/webhook")
-	private void webhook(@RequestBody String obj)  {
+	private void webhook(@RequestBody String obj) {
 		System.out.println("helooooooooooo");
-	//	String channelToken = "YeGR+Tx/wXpHTEto2B3faYXy16D+9ACtLW7yiUqqDAtFeX0nW5AEgHNcUYfxDL4+5QQ1ytWFUv1Ol5+1Pb2wOWk5+44idmCjlP6vancpqEk6q0tNuG4GGOPg5/S/mE4HZiqkBcEJ4F5plHAxfQ0CTwdB04t89/1O/w1cDnyilFU=";
-		 JSONObject bodyJson = new JSONObject(obj);
-		 logger.info("\nJSON BODY FROM DIALOGFLOW \n {}  ", bodyJson, "\n \n");
+		String channelToken = "YeGR+Tx/wXpHTEto2B3faYXy16D+9ACtLW7yiUqqDAtFeX0nW5AEgHNcUYfxDL4+5QQ1ytWFUv1Ol5+1Pb2wOWk5+44idmCjlP6vancpqEk6q0tNuG4GGOPg5/S/mE4HZiqkBcEJ4F5plHAxfQ0CTwdB04t89/1O/w1cDnyilFU=";
+		JSONObject bodyJson = new JSONObject(obj);
+		logger.info("\nJSON BODY FROM DIALOGFLOW \n {}  ", bodyJson, "\n \n");
 	}
-	
-	/**Map<String, Object> webhook(@RequestBody Map<String, Object> obj)
-			throws JSONException, IOException {
-			//Map<String, Object> json = new HashMap<String, Object>();
 
-		return obj;
-		}
-		
-		
-		**/
+	/**
+	 * Map<String, Object> webhook(@RequestBody Map<String, Object> obj) throws
+	 * JSONException, IOException { //Map<String, Object> json = new HashMap<String,
+	 * Object>();
+	 * 
+	 * return obj; }
+	 * 
+	 * 
+	 **/
 
 	@EventMapping
 	public void handlePostbackEvent(PostbackEvent event) {
