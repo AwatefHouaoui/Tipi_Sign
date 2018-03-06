@@ -99,7 +99,7 @@ public class BotController {
 		String speech = fulfillment.getString("speech");
 
 		LinkedHashMap<String, String> hm = new LinkedHashMap<>();
-		System.out.println("test");
+		System.out.println(intentName);
 		// switch (intentName.toLowerCase()) {
 		// case "carousel":
 		//
