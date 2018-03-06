@@ -67,11 +67,10 @@ public class BotController {
 
 	@ResponseBody
 	@RequestMapping(value = "/webhook", method = RequestMethod.POST)
-	private void webhook()  {
+	private void webhook(@RequestBody String obj)  {
 		String channelToken = "YeGR+Tx/wXpHTEto2B3faYXy16D+9ACtLW7yiUqqDAtFeX0nW5AEgHNcUYfxDL4+5QQ1ytWFUv1Ol5+1Pb2wOWk5+44idmCjlP6vancpqEk6q0tNuG4GGOPg5/S/mE4HZiqkBcEJ4F5plHAxfQ0CTwdB04t89/1O/w1cDnyilFU=";
-		 //JSONObject bodyJson = new JSONObject(obj);
-		 System.out.println("helloooooooooo");
-		 //logger.info("\nJSON BODY FROM DIALOGFLOW \n {}  ", bodyJson, "\n \n");
+		 JSONObject bodyJson = new JSONObject(obj);
+		 logger.info("\nJSON BODY FROM DIALOGFLOW \n {}  ", bodyJson, "\n \n");
 		return; 
 	}
 	
@@ -82,7 +81,7 @@ public class BotController {
 		return obj;
 		}
 		
-		@RequestBody String obj
+		
 		**/
 
 	@EventMapping
